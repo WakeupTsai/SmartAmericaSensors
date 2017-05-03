@@ -1,0 +1,44 @@
+Main:
+
+event_queue_size: 4096
+
+EventSinks:
+- MQTTEventSink:
+        class: "mqtt_event_sink.MQTTEventSink"
+        #hostname: "dime.smartamerica.io"
+        hostname: "m2m.eclipse.org"
+        hostport: 1883
+        username: null
+        password: null
+        keepalive: 60
+
+#Applications:
+#-Thread:
+#        class:"dummy_threaded_application.DummyThreadedApplicaion"
+#-LocationManager:
+#        class: "location_manager.LocationManager"
+
+# Applications:
+#     - LocationManager:
+#         class: "location_manager.LocationManager"
+
+Sensors:
+
+# - HBSensor:
+#        class: "heartbeat_virtual_sensor.HeartbeatVirtualSensor"
+#        dev_name: "hb0"
+#        interval: 60
+
+- TemperatureSensor:
+       class: "microphone_virtual_sensor.MicrophoneVirtualSensor"
+       #class: "camera_virtual_sensor.CameraVirtualSensor"
+       dev_name: "microphone"
+# - DummyPIRSensor:
+#        class: "dummy_sensors.dummy_pir_virtual_sensor.DummyPIRVirtualSensor"
+#        dev_name: "pir0"
+# - DummyLightSensor:
+#        class: "dummy_sensors.dummy_light_virtual_sensor.DummyLightVirtualSensor"
+#        dev_name: "light0"
+# - DummyGasSensor:
+#        class: "dummy_sensors.dummy_gas_virtual_sensor.DummyGasVirtualSensor"
+#        dev_name: "gas0"

@@ -2,25 +2,25 @@ Main:
     #event_queue_size: 4096
 
 EventSinks:
-    #- MQTTPublisher:
-    #    class: "mqtt_event_sink.MQTTEventSink"
-    #    hostname: "iqueue.ics.uci.edu"
-    #    #hostname: "dime.smartamerica.io"
-    #    #hostname: "m2m.eclipse.org"
-    #    hostport: 1883
-    #    username: null
-    #    password: null
-    #    keepalive: 60
+    - MQTTPublisher:
+       class: "mqtt_event_sink.MQTTEventSink"
+       #hostname: "iqueue.ics.uci.edu"
+       #hostname: "dime.smartamerica.io"
+       hostname: "m2m.eclipse.org"
+       hostport: 1883
+       username: null
+       password: null
+       keepalive: 60
 
-Applications:
-    - LocationManager:
-        class: "location_manager.LocationManager"
+# Applications:
+#     - LocationManager:
+#         class: "location_manager.LocationManager"
 
 Sensors:
-    - HBSensor:
-        class: "heartbeat_virtual_sensor.HeartbeatVirtualSensor"
-        dev_name: "hb0"
-        interval: 60
+    # - HBSensor:
+    #     class: "heartbeat_virtual_sensor.HeartbeatVirtualSensor"
+    #     dev_name: "hb0"
+    #     interval: 60
     #- PIRSensor:
     #    class: "pir_virtual_sensor.PIRVirtualSensor"
     #    dev_name: "pir0"
@@ -29,7 +29,7 @@ Sensors:
     #    class: "light_virtual_sensor.LightVirtualSensor"
     #    dev_name: "light0"
     #    analog_port: 3
-    #- GasSensor:
+    # - GasSensor:
     #    class: "gas_virtual_sensor.GasVirtualSensor"
     #    dev_name: "gas0"
     #    analog_port: 0
@@ -37,12 +37,13 @@ Sensors:
     #    class: "raw_analog_virtual_sensor.RawAnalogVirtualSensor"
     #    dev_name: "raw0"
     #    analog_port: 2
-    #- GeoIPSensor:
-    #    class: "location_sensors.geo_ip_virtual_sensor.GeoIPVirtualSensor"
-    #    dev_name: "geoip0"
-    - InternetAccessSensor:
-        class: "internet_access_virtual_sensor.InternetAccessVirtualSensor"
-        dev_name: "net0"
+    # - GeoIPSensor:
+    #    class: "location_sensors.gps_virtual_sensor.GPSVirtualSensor"
+    #    dev_name: "gps0"
+    #    interval: 60
+    # - InternetAccessSensor:
+    #     class: "internet_access_virtual_sensor.InternetAccessVirtualSensor"
+    #     dev_name: "net0"
     #- PIRNoMotionSensor:
     #    class: "pir_no_motion_virtual_sensor.PIRNoMotionVirtualSensor"
     #    dev_name: "nomot0"
@@ -55,4 +56,33 @@ Sensors:
     #- TemperatureHighSensor:
     #    class: "temperature_high_virtual_sensor.TemperatureHighVirtualSensor"
     #    dev_name: "heat0"
-
+     - MQ5AirContaminantsSensor: # just a label, can be whatever unique str in config
+         class: "gas_virtual_sensor.GasVirtualSensor"
+         dev_name: "mq3" # not important in DB, but should be unique in the config
+         analog_port: 0
+         gas_type: "pollution_air_mq5"
+         interval: 5
+    # - MQ7AirContaminantsSensor: # just a label, can be whatever unique str in config
+    #     class: "gas_virtual_sensor.GasVirtualSensor"
+    #     dev_name: "mq7" # not important in DB, but should be unique in the config
+    #     analog_port: 1
+    #     gas_type: "pollution_air_mq7"
+    #     interval: 5
+    # - MQ131AirContaminantsSensor: # just a label, can be whatever unique str in config
+    #     class: "gas_virtual_sensor.GasVirtualSensor"
+    #     dev_name: "mq131" # not important in DB, but should be unique in the config
+    #     analog_port: 2
+    #     gas_type: "pollution_air_mq131"
+    #     interval: 5
+    # - MQ135AirContaminantsSensor: # just a label, can be whatever unique str in config
+    #     class: "gas_virtual_sensor.GasVirtualSensor"
+    #     dev_name: "mq135" # not important in DB, but should be unique in the config
+    #     analog_port: 3
+    #     gas_type: "pollution_air_mq135"
+    #     interval: 5
+    # - Camera:
+    #    class: "camera_virtual_sensor.CameraVirtualSensor"
+    #    dev_name: "camera"
+    # - Microphone:
+    #   class: "microphone_virtual_sensor.MicrophoneVirtualSensor"
+    #   dev_name: "microphone"

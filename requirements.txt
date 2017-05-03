@@ -13,3 +13,6 @@ pyserial
 #XXX: depend on Debian package libmysqlclient-dev
 peewee
 #mysql
+#picamera
+pyusb
+#temperusb
